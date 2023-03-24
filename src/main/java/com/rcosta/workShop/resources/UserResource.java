@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rcosta.workShop.entities.User;
 
+
+/*Essa é uma classe de serviços */
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
