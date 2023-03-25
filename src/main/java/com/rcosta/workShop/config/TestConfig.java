@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.rcosta.workShop.entities.User;
-import com.rcosta.workShop.reposytories.UserReposytori;
+import com.rcosta.workShop.repositoryes.UserRepository;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
-	private UserReposytori useReposytori;
+	private UserRepository useReposytori;
 
 	@Override
 	public void run(String... args) throws Exception {
