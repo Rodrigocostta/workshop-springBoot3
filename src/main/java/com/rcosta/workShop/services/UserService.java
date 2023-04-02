@@ -9,7 +9,7 @@ import com.rcosta.workShop.entities.User;
 import com.rcosta.workShop.repositoryes.UserRepository;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class UserService {
 
 	/* Listando todos */
 	@Autowired
