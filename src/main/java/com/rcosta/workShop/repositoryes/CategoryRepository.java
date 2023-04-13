@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.rcosta.workShop.entities.Category;
 
-public interface CategoryReository  extends JpaRepository<Category,Long>{
+public interface CategoryRepository  extends JpaRepository<Category,Long>{
 
 }

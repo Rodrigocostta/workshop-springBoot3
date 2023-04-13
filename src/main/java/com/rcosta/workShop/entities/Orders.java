@@ -2,6 +2,8 @@ package com.rcosta.workShop.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rcosta.workShop.enums.OrderStatus;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,7 +35,11 @@ public class Orders implements Serializable {
 	private User client;
 
 	private Integer orderStatus;
+	
+	@OneToMany(mappedBy = "id.orders")
+	private  Set<OrderItem> items = new HashSet<>();
 
+	
 	/* Construtores */
 	public Orders() {
 
@@ -80,7 +87,12 @@ public class Orders implements Serializable {
 			this.orderStatus = orderStatus.getCode();
 		}
 	}
+	
+	public Set<OrderItem> getItem(){
+		return items;
+	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
