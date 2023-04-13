@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product implements Serializable {
@@ -24,6 +27,9 @@ public class Product implements Serializable {
 	private String description;
 	private Double price;
 	private String imgUrl;
+	
+	@OneToMany(mappedBy = "id.product")
+	private Set<OrderItem> items = new HashSet<>();
 	
 	/*no mapeamento muitis oara muitos o JPA gera altomaticamente uma tabela de junção e esse é o relacionamneto correto*/
 	@ManyToMany
@@ -89,6 +95,15 @@ public class Product implements Serializable {
 
 	public Set<Category> getCategories() {
 		return categories;
+	}
+	@JsonIgnore
+	public Set<Orders> getOrders(){
+		Set<Orders> set = new HashSet<>();
+		
+		for(OrderItem x : items) {
+			set.add(x.getOrders());
+		}
+		return set;
 	}
 
 	@Override
