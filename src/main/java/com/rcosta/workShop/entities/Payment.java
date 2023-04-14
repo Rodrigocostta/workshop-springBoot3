@@ -3,6 +3,8 @@ package com.rcosta.workShop.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,10 +13,9 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "tb_Payment")
-public class Payment  implements Serializable {
+public class Payment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,58 +23,50 @@ public class Payment  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	private Instant moment;
-	
+
+	@JsonIgnore
 	@OneToOne
 	@MapsId
 	private Orders order;
-	
-	
-	//constructors
-	public Payment() {
-		
-	}
 
+	// constructors
+	public Payment() {
+
+	}
 
 	public Payment(Long id, Instant moment, Orders order) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		this.order= order;
+		this.order = order;
 	}
 
-  // getters and stters 
+	// getters and stters
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public Instant getMoment() {
 		return moment;
 	}
-
 
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 
-
 	public Orders getOrder() {
 		return order;
 	}
-
 
 	public void setOrder(Orders order) {
 		this.order = order;
 	}
 
-
-	
-	//hash code
+	// hash code
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,7 +74,6 @@ public class Payment  implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -99,7 +91,5 @@ public class Payment  implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }
