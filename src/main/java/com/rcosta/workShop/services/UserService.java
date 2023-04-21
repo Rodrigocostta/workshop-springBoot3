@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rcosta.workShop.entities.User;
 import com.rcosta.workShop.repositoryes.UserRepository;
+import com.rcosta.workShop.services.Execeptions.ResourceNotFoundException;
 
 @org.springframework.stereotype.Service
 public class UserService {
@@ -23,7 +24,7 @@ public class UserService {
 	/* Buscando com parametro */
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	// inserindo um novo usuario
